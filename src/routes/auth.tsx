@@ -2,6 +2,7 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { toast } from "sonner";
 import { api } from "@/lib/api";
+import { useT } from "@/lib/i18n";
 
 import farmBg from "@/assets/farm-bg.jpg";
 import { Button } from "@/components/ui/button";
@@ -34,6 +35,7 @@ function AuthPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const { t } = useT();
 
   const signIn = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -46,7 +48,7 @@ function AuthPage() {
       toast.error(error instanceof Error ? error.message : "लॉगिन नहीं हो सका।");
       return;
     }
-    toast.success("स्वागत है! आप लॉगिन हो गए।");
+    toast.success(t("स्वागत है! आप लॉगिन हो गए।", "Welcome! You are logged in."));
     navigate({ to: "/" });
   };
 
@@ -56,7 +58,7 @@ function AuthPage() {
     try {
       await api.auth.signup(email, password);
       setLoading(false);
-      toast.success("खाता बन गया और आप लॉगिन हो गए।");
+      toast.success(t("खाता बन गया और आप लॉगिन हो गए।", "Account created and you are logged in."));
       navigate({ to: "/" });
     } catch (error) {
       setLoading(false);
