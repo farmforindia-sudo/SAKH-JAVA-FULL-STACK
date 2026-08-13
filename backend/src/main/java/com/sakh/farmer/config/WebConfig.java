@@ -22,8 +22,9 @@ public class WebConfig {
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/api/**")
                         .allowedOrigins(
-                                "http://localhost:3000",
-                                "https://sakh-iota.vercel.app"
+                                "http" + "://localhost:3000",
+                                "https" + "://sakh-iota.vercel.app",
+                                "https" + "://sakh-bice.vercel.app"
                         )
                         .allowedMethods("GET", "POST", "DELETE", "OPTIONS")
                         .allowedHeaders("*")
